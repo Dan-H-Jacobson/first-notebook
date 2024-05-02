@@ -1,0 +1,73 @@
+---
+title: "code-markdown"
+output: html_document
+date: "2024-05-01"
+---
+
+```{r load-data, include = FALSE}
+# Load tidyverse library
+library(tidyverse) # used for data manipulation
+library(rmarkdown) # used for paged_table function
+library(kableExtra) # used for table
+library(ggpubr) # for ggarrange function
+
+# Read file into R
+pop_data <- read_csv('data/gapminder_data.csv')
+
+# Create table with data from European countries in 2007 showing the countries
+#   with the largest life expectancy at the top
+euro_data_tbl <- pop_data %>%
+  filter(continent == 'Europe' & year == 2007) %>%
+  select(-continent, -year) %>%
+  arrange(desc(lifeExp)) %>%
+  rename(Country = country, 'Population Size' = pop,
+         'Life Expectancy' = lifeExp, 'GDP per Capita' = gdpPercap)
+
+# print(head(euro_data_tbl))
+```
+
+### 1. kbl()
+
+```{r kbl, echo = FALSE}
+euro_data_tbl %>%
+  head() %>% kbl() %>% 
+  kable_styling(bootstrap_options = c('striped', 'hover'),
+                position = 'left', full_width = FALSE)
+```
+
+
+### 2. paged_table()
+
+```{r paged_table, echo = FALSE}
+paged_table(euro_data_tbl)
+```
+
+### Challenge
+
+Filter ```euro_data_fig``` and then draw a violin plot with ```lifeExp``` on the y axis and ```year``` on the x axis
+
+```{r plot-lifeExp, echo = FALSE}
+euro_data_fig <- pop_data %>%
+  filter(continent == 'Europe')
+euro_data_fig$year <- as.factor(euro_data_fig$year)
+
+euro_plot <- ggplot(euro_data_fig, aes(x = year, y = lifeExp)) +
+  geom_violin() + geom_jitter()
+# print(euro_plot)
+```
+
+Create a new table ```uk_data_fig``` which only contains UK data. Plot this next to the Europe plot
+
+```{r plot-lifeExpUK, echo = FALSE}
+uk_data_fig <- pop_data %>%
+  filter(country == 'United Kingdom')
+uk_data_fig$year <- as.factor(uk_data_fig$year)
+
+uk_plot <- ggplot(uk_data_fig, aes(x = year, y = lifeExp)) + 
+  geom_point()
+ggarrange(plotlist = list(euro_plot, uk_plot),
+          labels = c('A','B'))
+```
+
+
+

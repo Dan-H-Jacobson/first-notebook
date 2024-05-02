@@ -1,0 +1,83 @@
+---
+title: "My Website"
+author: Dan Jacobson
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# My big heading
+
+
+# Markdown {#markdown-header}
+## A slightly smaller one
+
+### even smaller!
+
+**bold text**  
+__This is bold too__  
+*this should be italics*  
+_this should be too_  
+X^2^ = Y^3^ \
+
+H~2~O  
+`c = 2.5
+x = 6
+`
+
+~~This is struck out~~
+
+### ordered lists
+1. first item
+2. second item
+3. third item
+    a. item 3a
+    b. item 3b
+4. fourth item
+
+### unordered lists
+* first item
+    * four a
+* second item
+* third item
+
+
+### checking items
+
+- [ ] \ an unchecked task list item
+- [x] \ checked item
+
+
+### inserting images
+
+![R Logo](img/Rlogo.png)
+
+## Tables
+
+| column 1 | column 2 |
+| - | - |
+| Item 1,1 | Item 1,2 |
+| Item 2,1 | Item 2,2 |
+
+| Left align | Centre align | Right align |
+| :- | :-: | -: |
+| Item 1,1 | Item 1,2 | Item 1,3 |
+| Item 2,1 | Item 2,2 | Item 2,3 |
+
+You can also cheat using [this](https://www.tablesgenerator.com/markdown_tables)
+
+## Blocks
+
+> This kind of block can give emphasis to something
+
+You can also add code blocks. Note that it doesn't actually run this, but just renders it.
+
+```
+print('Hello world')
+x <- 1+2
+print(paste0('x = ', x))
+```
+
+[text of link](https://training.cam.ac.uk/bioinformatics/event-timetable)  
+[Link to top](#markdown-header)
