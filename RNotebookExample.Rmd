@@ -52,7 +52,7 @@ euro_data_fig <- pop_data %>%
 euro_data_fig$year <- as.factor(euro_data_fig$year)
 
 euro_plot <- ggplot(euro_data_fig, aes(x = year, y = lifeExp)) +
-  geom_violin() + geom_jitter()
+  geom_violin() + geom_jitter() + ggtitle('EU plots')
 # print(euro_plot)
 ```
 
